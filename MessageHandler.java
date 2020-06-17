@@ -15,11 +15,11 @@ public class MessageHandler extends ListenerAdapter {
     };
 
     private String[] helpCommandList = {
-            "`.shutdown` -принудительное завершение работы",
-            "`.reboot  ` -немедленная перезагрузка компьютера",
-            "`.sleep   ` -переход компьютера в режим сна",
-            "`.stop    ` -остановить ввод пароля",
-            "`.help    ` -остановить ввод пароля и получить список доступных команд",
+            ".shutdown #~завершение работы",
+            ".reboot   #~перезагрузка компьютера",
+            ".sleep    #~переход компьютера в режим сна",
+            ".stop     #~остановить ввод пароля",
+            ".help     #~остановить ввод пароля и получить список доступных команд",
     };
 
     private String[] CommandList = {
@@ -34,14 +34,14 @@ public class MessageHandler extends ListenerAdapter {
             "psshutdown.exe -d -t 00", //.sleep
     };
     private String[] completeCommandList = {
-            "```css `Выключаем..` ```",
-            "```css `Перезагрузка..` ```",
-            "```css `Режим сна..` ```",
+            "> `Выключаем..`",
+            "> `Перезагрузка..`",
+            "> `Режим сна..`",
     };
 
-    private String password = "S12345D";
+    private String password = "PASSWORD12345";
 
-    private String helpList = ">>> Command List :\n" + "%s\n" + "%s\n" + "%s\n" + "%s\n" + "%s\n";
+    private String helpList = "```yaml\n Command List :\n" + "%s\n" + "%s\n" + "%s\n" + "%s\n" + "%s\n```";
 
     private int numCommand;
 
@@ -57,16 +57,20 @@ public class MessageHandler extends ListenerAdapter {
         if (!event.getAuthor().isBot()) {
             switch (event.getMessage().getContentDisplay()) {
                 case ".shutdown":
-                    event.getChannel().sendMessage("T").submit();
                     setCommand(event, 0);
+                    break;
                 case ".reboot":
                     setCommand(event, 1);
+                    break;
                 case ".sleep":
                     setCommand(event, 2);
+                    break;
                 case ".help":
                     stop(event, true);
+                    break;
                 case ".stop":
                     stop(event, false);
+                    break;
                 default:
                     runFunction(event, numCommand);
             }
