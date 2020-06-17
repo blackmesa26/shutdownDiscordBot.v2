@@ -31,7 +31,7 @@ public class MessageHandler extends ListenerAdapter {
     private String[] consoleCommandList = {
             "shutdown.exe -f -p",      //.shutdown
             "shutdown.exe -r -t 0",    //.reboot
-            "psshutdown.exe -d -t 00", //.sleep
+            "rundll32.exe powrprof.dll,SetSuspendState 0,1,0", //.sleep
     };
     private String[] completeCommandList = {
             "> `Выключаем..`",
